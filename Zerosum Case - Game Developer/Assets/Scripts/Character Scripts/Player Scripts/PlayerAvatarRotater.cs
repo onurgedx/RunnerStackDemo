@@ -8,7 +8,7 @@ public class PlayerAvatarRotater : MonoBehaviour
     
     [SerializeField] private Transform _playerAvatarTransform;
     [SerializeField] private Transform _playerAvatarLookHereTransform;
-    [SerializeField] private PlayerDataScriptable _playerData;
+    [SerializeField] private PlayerData _playerData;
     
 
 
@@ -40,7 +40,7 @@ public class PlayerAvatarRotater : MonoBehaviour
     {
 
         Quaternion destinationRotation = Quaternion.LookRotation(_playerAvatarLookHereTransform.position - _playerAvatarTransform.position);
-        _playerAvatarTransform.rotation = Quaternion.Lerp(_playerAvatarTransform.rotation , destinationRotation , Time.deltaTime * _playerData.RotateSpeed);
+        _playerAvatarTransform.rotation = Quaternion.Lerp(_playerAvatarTransform.rotation , destinationRotation , Time.deltaTime * _playerData.Data.RotateSpeed);
 
     }
     #endregion
