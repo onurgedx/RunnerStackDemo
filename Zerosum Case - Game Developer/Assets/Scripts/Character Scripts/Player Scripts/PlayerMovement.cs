@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[DefaultExecutionOrder(3)]
 public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] private PlayerData _playerData;
+
+    [SerializeField] private Transform _playerAvatarModelTransform;
 
     public delegate void MovementDelegate();
 
@@ -13,12 +16,25 @@ public class PlayerMovement : MonoBehaviour
 
     private Transform _transform;
 
+   
+
+    public Action OnRun1MovementStart;
+
+    public Action OnMovementEnd;
+    
+
+
     private void Awake()
     {
         _transform = transform;
 
     }
-    
+
+    private void Start()
+    {
+      LevelManager.Instance.OnLevelStart += ActivateMoveAbility;
+        LevelManager.Instance.OnLevelFinish += DeactivateMoveAbility;
+    }
     private void Update()
     {
 
@@ -29,10 +45,15 @@ public class PlayerMovement : MonoBehaviour
     #region Move Activate/Deactivate Methods
     private void ActivateMoveAbility()
     {
+
+        OnRun1MovementStart?.Invoke();
         MovementEvent = MoveForward;
+
+
     }
     private void DeactivateMoveAbility()
     {
+        OnMovementEnd?.Invoke();
         MovementEvent = null;
 
     }
@@ -42,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     #region Move Methods 
     private void MoveForward()
     {
-        _transform.position += _transform.forward * _playerData.Data.MovementSpeedForRun1 * Time.deltaTime;
+        _transform.position += _playerAvatarModelTransform.forward * _playerData.Data.MovementSpeedForRun1 * Time.deltaTime;
 
     }
     #endregion

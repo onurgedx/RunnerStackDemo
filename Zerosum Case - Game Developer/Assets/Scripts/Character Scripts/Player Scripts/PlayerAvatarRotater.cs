@@ -16,6 +16,11 @@ public class PlayerAvatarRotater : MonoBehaviour
 
     public RotateDelegate RotateEvent;
 
+    private void Start()
+    {
+        LevelManager.Instance.OnLevelStart += ActivateRotate;
+        LevelManager.Instance.OnLevelFinish += DeactivateRotate;
+    }
 
 
     private void Update()
