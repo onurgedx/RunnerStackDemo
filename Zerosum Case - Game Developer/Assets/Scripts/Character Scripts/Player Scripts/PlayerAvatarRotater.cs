@@ -4,15 +4,66 @@ using UnityEngine;
 
 public class PlayerAvatarRotater : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    
+    [SerializeField] private Transform _playerAvatarTransform;
+    [SerializeField] private Transform _playerAvatarLookHereTransform;
+    [SerializeField] private PlayerDataScriptable _playerData;
+    
+
+
+    public delegate void RotateDelegate();
+
+    public RotateDelegate RotateEvent;
+
+
+
+    private void Update()
     {
-        
+
+        Rotate();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    #region Main Rotate Method
+
+    private void Rotate()
     {
-        
+        RotateEvent?.Invoke();
+
     }
+    #endregion
+
+
+    #region Rotate Methods
+    private void RotateToReferance()
+    {
+
+        Quaternion destinationRotation = Quaternion.LookRotation(_playerAvatarLookHereTransform.position - _playerAvatarTransform.position);
+        _playerAvatarTransform.rotation = Quaternion.Lerp(_playerAvatarTransform.rotation , destinationRotation , Time.deltaTime * _playerData.RotateSpeed);
+
+    }
+    #endregion
+
+    #region Rotate Activate/Deactivate  Methods
+
+    private void ActivateRotate()
+    {
+        RotateEvent = RotateToReferance;
+
+    }
+
+    private void DeactivateRotate()
+    {
+        RotateEvent = null;
+
+    }
+
+    #endregion
+
+
+
+
+
+
 }

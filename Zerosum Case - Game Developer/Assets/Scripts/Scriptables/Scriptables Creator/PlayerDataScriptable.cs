@@ -12,6 +12,8 @@ public class PlayerDataScriptable : ScriptableObject
     public float MovementSpeedForRun1 = 10f;
     public float MovementSpeedForRun2 = 15;
 
+    public float RotateSpeed = 10f;
+
 
 
 
