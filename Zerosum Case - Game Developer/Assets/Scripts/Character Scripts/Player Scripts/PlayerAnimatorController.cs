@@ -12,10 +12,11 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void Start()
     {
-        LevelManager.Instance.OnMenuActivated += AnimateIdle;
+        LevelManager.Instance.OnLevelLoad += AnimateIdle;
         _playerMovement.OnMovementEnd += AnimateDance;
         _playerMovement.OnRun1MovementStart += AnimateRun1;
         _playerMovement.OnRun2MovementStart += AnimateRun2;
+
     }
 
     private void AnimateIdle()

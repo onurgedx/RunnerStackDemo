@@ -6,16 +6,20 @@ using UnityEngine;
 public class GameManager : MonoSingleton<GameManager>
 {
 
+
+    
+    
+
     // Testing , i will fix here tomorrow
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            LevelManager.Instance.OnLevelStart?.Invoke();
+            LevelManager.Instance.StartLevel();
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            LevelManager.Instance.OnLevelFinish?.Invoke();
+            LevelManager.Instance.FinishLevel();
         }
     }
 

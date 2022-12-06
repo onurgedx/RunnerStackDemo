@@ -15,6 +15,7 @@ public class PlayerCameraReferanceSetter : MonoBehaviour
     private void Start()
     {
         SetCameraReferanceBeforeStart();
+        LevelManager.Instance.OnLevelLoad += SetCameraReferanceBeforeStart;
         _playerMovement.OnRun1MovementStart += SetCameraReferanceRun1;
         _playerMovement.OnRun2MovementStart += SetCameraReferanceRun2;
         _playerDancer.OnDanceStart += SetCameraReferanceDance;
