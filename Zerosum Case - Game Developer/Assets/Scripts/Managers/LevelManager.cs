@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class LevelManager : MonoSingleton<LevelManager>
 {
-
+    public Action OnMenuActivated;
+    public Action OnMenuDeactivated;
     public Action OnLevelStart;
     public Action OnLevelFinish;
 

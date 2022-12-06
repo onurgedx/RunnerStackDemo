@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
    
 
     public Action OnRun1MovementStart;
+    public Action OnRun2MovementStart;
 
     public Action OnMovementEnd;
     
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-      LevelManager.Instance.OnLevelStart += ActivateMoveAbility;
+      LevelManager.Instance.OnLevelStart += ActivateMoveAbilityRun1;
         LevelManager.Instance.OnLevelFinish += DeactivateMoveAbility;
     }
     private void Update()
@@ -43,13 +44,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region Move Activate/Deactivate Methods
-    private void ActivateMoveAbility()
+    private void ActivateMoveAbilityRun1()
     {
 
         OnRun1MovementStart?.Invoke();
-        MovementEvent = MoveForward;
+        MovementEvent = MoveForwardRun1;
 
 
+    }
+    private void ActivateMoveAbilityRun2()
+    {
+        OnRun2MovementStart?.Invoke();
+        MovementEvent = MoveForwardRun2;
     }
     private void DeactivateMoveAbility()
     {
@@ -61,10 +67,15 @@ public class PlayerMovement : MonoBehaviour
 
 
     #region Move Methods 
-    private void MoveForward()
+    private void MoveForwardRun1()
     {
         _transform.position += _playerAvatarModelTransform.forward * _playerData.Data.MovementSpeedForRun1 * Time.deltaTime;
 
+    }
+
+    private void MoveForwardRun2()
+    {
+        _transform.position += _playerAvatarModelTransform.forward * _playerData.Data.MovementSpeedForRun2 * Time.deltaTime;
     }
     #endregion
 
