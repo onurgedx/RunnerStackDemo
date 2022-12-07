@@ -34,6 +34,7 @@ public class PlayerCollisionChecker : MonoBehaviour
         {
             obstacle.BeCrushed();
             OnCrushAObstacle?.Invoke(obstacle.GetDamageAmountAsStackCount());
+            CameraManager.Instance.ShakeCamera();
         }
         
     }

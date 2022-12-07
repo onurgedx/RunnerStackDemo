@@ -15,4 +15,4 @@ MonoBehaviour:
   MovementSpeedForRun1: 5
   MovementSpeedForRun2: 10
   RotateSpeed: 6
-  ReboundAmount: -3
+  ReboundAmount: -1.4

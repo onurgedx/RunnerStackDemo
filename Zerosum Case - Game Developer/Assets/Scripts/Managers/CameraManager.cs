@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class CameraManager : MonoSingleton<CameraManager>
 {
 
@@ -67,10 +67,10 @@ public class CameraManager : MonoSingleton<CameraManager>
     }
 
     
-    private void ShakeCamera()
+    public void ShakeCamera()
     {
-        
-      //  _mainCamera.
+
+        _mainCamera.transform.DOShakeRotation(0.1f,1,1); 
 
     }
     
