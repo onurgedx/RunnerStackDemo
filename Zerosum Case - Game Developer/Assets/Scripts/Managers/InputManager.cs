@@ -28,7 +28,7 @@ public class InputManager : MonoSingleton<InputManager>
 
     private Vector3 joystickDirection
     {
-        get { return new Vector3(_joystick.Direction.x,0,0); }
+        get { return new Vector3(_joystick.Direction.x*0.1f,0,0); }
     }
 
 

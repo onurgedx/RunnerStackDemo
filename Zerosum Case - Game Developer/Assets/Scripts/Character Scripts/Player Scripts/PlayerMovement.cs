@@ -10,6 +10,24 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform _playerAvatarModelTransform;
 
+    [SerializeField] private PlayerStack _playerStack;
+
+    
+     
+
+
+    private float _aspectOfSpeed=1;
+
+    public float AspectOfSpeed
+    {
+        get { return _aspectOfSpeed; }
+        set
+        {
+            _aspectOfSpeed = value;
+        }
+    }
+
+
     public delegate void MovementDelegate();
 
     public MovementDelegate MovementEvent;
@@ -34,7 +52,14 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
       LevelManager.Instance.OnLevelStart += ActivateMoveAbilityRun1;
+
         LevelManager.Instance.OnLevelFinish += DeactivateMoveAbility;
+        
+        _playerStack.OnStackFull += ActivateMoveAbilityRun2;
+        _playerStack.OnStackLose += ActivateMoveAbilityRun1;
+
+        
+
     }
     private void Update()
     {
@@ -69,13 +94,13 @@ public class PlayerMovement : MonoBehaviour
     #region Move Methods 
     private void MoveForwardRun1()
     {
-        _transform.position += _playerAvatarModelTransform.forward * _playerData.Data.MovementSpeedForRun1 * Time.deltaTime;
+        _transform.position += _playerAvatarModelTransform.forward * _playerData.Data.MovementSpeedForRun1 * Time.deltaTime*_aspectOfSpeed;
 
     }
 
     private void MoveForwardRun2()
     {
-        _transform.position += _playerAvatarModelTransform.forward * _playerData.Data.MovementSpeedForRun2 * Time.deltaTime;
+        _transform.position += _playerAvatarModelTransform.forward * _playerData.Data.MovementSpeedForRun2 * Time.deltaTime*_aspectOfSpeed;
     }
     #endregion
 
@@ -88,5 +113,6 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+   
 
 }

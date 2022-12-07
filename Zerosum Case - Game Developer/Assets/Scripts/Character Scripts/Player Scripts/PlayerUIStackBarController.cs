@@ -21,6 +21,8 @@ public class PlayerUIStackBarController : MonoBehaviour
         _playerStack.OnMaxStackCountChange += UpdateStackBarMaxValue;
         _playerStack.OnStackCountChange += UpdateStackBarValue;
 
+        _stackBarSlider.gameObject.SetActive(false);
+
 
     }
 

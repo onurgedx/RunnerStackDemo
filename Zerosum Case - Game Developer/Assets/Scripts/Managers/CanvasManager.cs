@@ -8,7 +8,8 @@ public class CanvasManager : MonoSingleton<CanvasManager>
 
     public Action OnStartMenuActivate;
     public Action OnFinishMenuActivate;
-    
+
+    public Action OnUpgrade;
 
     [SerializeField] private GameObject _startMenu, _inGameUI, _finishMenu;
 
@@ -51,7 +52,7 @@ public class CanvasManager : MonoSingleton<CanvasManager>
     private void Start()
     {
         _upgradeButton.onClick.AddListener(UpdateCurrencyAmountText);// i did this to show you i know that way.
-
+        _upgradeButton.onClick.AddListener(UpgradeButtonPressed);
         UpdateCurrencyAmountText();
         SetUpgradeButtonInteractable();
         LevelManager.Instance.OnLevelStart += ActivateInGameIU;
@@ -65,7 +66,10 @@ public class CanvasManager : MonoSingleton<CanvasManager>
         _levelNumberText.text = GlobalStrings.Level + " " + LevelManager.Instance.LevelNumber.ToString();
 
     }
-
+    private void UpgradeButtonPressed()
+    {
+        OnUpgrade?.Invoke();
+    }
     public void UpdateCurrencyAmountText()
     {
         _currencyAmountText.text = CurrencyManager.Instance.CurrencyAmount.ToString();

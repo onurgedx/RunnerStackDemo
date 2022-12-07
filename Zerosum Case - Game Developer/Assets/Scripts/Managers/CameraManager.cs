@@ -67,7 +67,13 @@ public class CameraManager : MonoSingleton<CameraManager>
     }
 
     
+    private void ShakeCamera()
+    {
+        
+      //  _mainCamera.
 
+    }
+    
 
 
 }

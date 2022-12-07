@@ -1,18 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCollectable : MonoBehaviour
+public class BaseCollectable : MonoBehaviour , ICollectable
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private CollectableDataScriptable _collectableData;
+
+    public Action OnBeCollected;
+
+    public void Collect()
     {
-        
+        OnBeCollected?.Invoke();
+        gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public int StackValue()
     {
-        
+        return _collectableData.StackCost;
     }
+
+  
 }

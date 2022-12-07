@@ -14,7 +14,7 @@ public class PlayerDataScriptable : ScriptableObject
 
     public float RotateSpeed = 10f;
 
-    
+    public float ReboundAmount = -1f;
 
 
 
