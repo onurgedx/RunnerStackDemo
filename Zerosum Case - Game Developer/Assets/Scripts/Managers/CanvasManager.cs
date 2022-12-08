@@ -6,6 +6,11 @@ using UnityEngine.UI;
 public class CanvasManager : MonoSingleton<CanvasManager>
 {
 
+
+
+    public Transform CurrencyAmountInGameTransform;
+
+
     public Action OnStartMenuActivate;
     public Action OnFinishMenuActivate;
 
@@ -15,8 +20,8 @@ public class CanvasManager : MonoSingleton<CanvasManager>
 
 
 
-    [SerializeField] private Text _levelNumberText;
-    [SerializeField] private Text _currencyAmountText;
+    [SerializeField] private List<Text> _levelNumberTextList;
+    [SerializeField] private List<Text> _currencyAmountTextList;
 
     [SerializeField] private Button _upgradeButton;
     [SerializeField] private Button _playButtton;
@@ -51,8 +56,8 @@ public class CanvasManager : MonoSingleton<CanvasManager>
 
     private void Start()
     {
-        _upgradeButton.onClick.AddListener(UpdateCurrencyAmountText);// i did this to show you i know that way.
-        _upgradeButton.onClick.AddListener(UpgradeButtonPressed);
+        
+        _upgradeButton.onClick.AddListener(UpgradeButtonPressed);// i did this to show you i know that way.
         UpdateCurrencyAmountText();
         SetUpgradeButtonInteractable();
         LevelManager.Instance.OnLevelStart += ActivateInGameIU;
@@ -60,10 +65,17 @@ public class CanvasManager : MonoSingleton<CanvasManager>
         LevelManager.Instance.OnLevelLoad += ActivateStartMenu;
         LevelManager.Instance.OnLevelNumberChange += UpdateLevelNumberText;
         CurrencyManager.Instance.OnCurrencyAmountChange += SetUpgradeButtonInteractable;
+        CurrencyManager.Instance.OnCurrencyAmountChange += UpdateCurrencyAmountText;
     }
     private void UpdateLevelNumberText()
     {
-        _levelNumberText.text = GlobalStrings.Level + " " + LevelManager.Instance.LevelNumber.ToString();
+        string levelNumberText =GlobalStrings.Level + " " + LevelManager.Instance.LevelNumber.ToString();
+        for (int i = 0; i < _levelNumberTextList.Count; i++)
+        {
+            _levelNumberTextList[i].text = levelNumberText;
+
+        }
+
 
     }
     private void UpgradeButtonPressed()
@@ -72,7 +84,12 @@ public class CanvasManager : MonoSingleton<CanvasManager>
     }
     public void UpdateCurrencyAmountText()
     {
-        _currencyAmountText.text = CurrencyManager.Instance.CurrencyAmount.ToString();
+        string currencyAmountStr = CurrencyManager.Instance.CurrencyAmount.ToString();
+        for (int i = 0; i < _currencyAmountTextList.Count; i++)
+        {
+
+            _currencyAmountTextList[i].text = currencyAmountStr;
+        }
     }
     private void SetUpgradeButtonInteractable()
     {

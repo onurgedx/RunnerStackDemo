@@ -8,4 +8,5 @@ using UnityEngine;
 public class CollectableDataScriptable : ScriptableObject
 {
     public int StackCost = 1;
+    public int ValueAsGoldCoin = 50;
 }
