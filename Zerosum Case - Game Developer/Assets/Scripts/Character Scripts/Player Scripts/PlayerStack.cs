@@ -18,6 +18,7 @@ public class PlayerStack : MonoBehaviour
 
     private int _stackCount;
 
+    private bool _canStackIncrease = true;
     public int StackCount
     {
         get
@@ -31,15 +32,15 @@ public class PlayerStack : MonoBehaviour
             if (_stackCount != value)
             {
 
-                _stackCount = Mathf.Clamp( value,0,MaxStackCount);
+                _stackCount = Mathf.Clamp(value, 0, MaxStackCount);
                 OnStackCountChange?.Invoke(_stackCount);
-                
-                if(_stackCount == _maxStackCount)
+
+                if (_stackCount == _maxStackCount)
                 {
                     OnStackFull?.Invoke();
-
+                   
                 }
-                
+
 
 
             }
@@ -70,6 +71,28 @@ public class PlayerStack : MonoBehaviour
             }
         }
     }
+    void Start()
+    {
+        ResetStackCountZero();
+        LevelManager.Instance.OnLevelLoad += ResetStackCountZero;
+        _playerCollisionChecker.OnGainCollectable += IncreaseStackCount;
+        _playerCollisionChecker.OnCrushAObstacle += DecreaseStackCount;
+        _playerCollisionChecker.CanCollect += CanStackable;
+
+        MaxStackCount = 0;
+        MaxStackCount = PlayerPrefs.GetInt(GlobalStrings.MaxStackCount, GlobalNumbers.DefaultMaxStackCount);
+        CanvasManager.Instance.OnUpgrade += IncreaseMaxStackCount;
+        OnStackFull += SetLayerIgnoreDiamonts;
+        OnStackLose += SetLayerPlayer;
+        LevelManager.Instance.OnLevelLoad += SetLayerPlayer;
+    }
+
+    private bool CanStackable()
+    {
+        return _canStackIncrease;
+
+    }
+
 
     private void ResetStackCountZero()
     {
@@ -79,39 +102,40 @@ public class PlayerStack : MonoBehaviour
 
     private void IncreaseStackCount(int increaseAmount = 1)
     {
-        StackCount += increaseAmount;
+        if (_canStackIncrease)
+        {
+
+            StackCount += increaseAmount;
+        }
 
 
     }
-    private void DecreaseStackCount(int decreaseAmount=1)
+    private void DecreaseStackCount(int decreaseAmount = 1)
     {
-        if(StackCount == MaxStackCount)
-        { } 
-            OnStackLose?.Invoke();
-         
-        
+
+        OnStackLose?.Invoke();
+        _canStackIncrease = true;
+
 
         StackCount = 0;
 
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void SetLayerIgnoreDiamonts()
     {
-        ResetStackCountZero();
-        LevelManager.Instance.OnLevelLoad += ResetStackCountZero;
-        _playerCollisionChecker.OnGainCollectable += IncreaseStackCount;
-        _playerCollisionChecker.OnCrushAObstacle += DecreaseStackCount;
-
-        MaxStackCount = 0;
-        MaxStackCount = PlayerPrefs.GetInt(GlobalStrings.MaxStackCount, GlobalNumbers.DefaultMaxStackCount);
-        CanvasManager.Instance.OnUpgrade += IncreaseMaxStackCount;
+        gameObject.layer = 8;
         
     }
+    private void SetLayerPlayer()
+    {
+        gameObject.layer = 6;
+    }
+
+    // Start is called before the first frame update
+
 
     private void IncreaseMaxStackCount()
     {
-        
+
         MaxStackCount++;
 
     }

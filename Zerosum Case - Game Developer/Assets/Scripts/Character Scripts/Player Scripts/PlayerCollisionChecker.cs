@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class PlayerCollisionChecker : MonoBehaviour
 {
-
-    
     public Action<int> OnGainCollectable;
     public Action<int> OnCrushAObstacle;
     private IPlayer _player;
+
+    public delegate bool CollideCheker();
+    public CollideCheker CanCollect;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +27,18 @@ public class PlayerCollisionChecker : MonoBehaviour
 
         if(other.gameObject.TryGetComponent(out ICollectable collectable))
         {
+
             collectable.Collect(_player);
+
             OnGainCollectable?.Invoke(collectable.StackValue());
+
         }
         if(other.gameObject.TryGetComponent(out IObstacle obstacle))
         {
             obstacle.BeCrushed();
+
             OnCrushAObstacle?.Invoke(obstacle.GetDamageAmountAsStackCount());
+
             CameraManager.Instance.ShakeCamera();
         }
         

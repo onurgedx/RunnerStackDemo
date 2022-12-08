@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f195266765369fd43b3d528ae60f93c3, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  MovementSpeedForRun1: 5
-  MovementSpeedForRun2: 10
-  RotateSpeed: 6
+  MovementSpeedForRun1: 3
+  MovementSpeedForRun2: 6
+  RotateSpeed: 40
   ReboundAmount: -1.4

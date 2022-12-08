@@ -9,19 +9,19 @@ public class PlayerCollectBounceEffector : MonoBehaviour
     [SerializeField] private PlayerCollisionChecker _playerCollisionChecker;
     [SerializeField] private Transform _childestAvatarModelTransform;
 
+    private Vector3 recordedFirstAvatarScale;
+
+    private WaitForSeconds _waitForSecondsForArriveDuration;
+
     // Start is called before the first frame update
     void Start()
     {
         _playerCollisionChecker.OnGainCollectable += Bounce;
-        
+        recordedFirstAvatarScale = _childestAvatarModelTransform.localScale;
+        _waitForSecondsForArriveDuration = new WaitForSeconds(Durations.BeGainedDuration);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void Bounce(int stackCost)
     {
 
@@ -30,9 +30,13 @@ public class PlayerCollectBounceEffector : MonoBehaviour
 
     private IEnumerator BounceIEnumerator()
     {
-        Vector3 recordedFirstAvatarScale = _childestAvatarModelTransform.localScale;
-        
+
+        yield return _waitForSecondsForArriveDuration;
+
+
         float timeCounter = 0;
+
+
         while (timeCounter <1)
         {
             timeCounter = Mathf.Clamp(timeCounter + Time.deltaTime*BounceSpeed, 0, 1);

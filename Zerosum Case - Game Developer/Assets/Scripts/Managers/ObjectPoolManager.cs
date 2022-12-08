@@ -15,6 +15,8 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
 
     [SerializeField] private ParticlePool _crushParticlePool;
     [SerializeField] private ParticlePool _gainParticlePool;
+    [SerializeField] private ParticlePool _obstacleShuriFXPool;
+
 
     private ParticleSystem GetFx(ParticlePool particlePool)
     {
@@ -43,6 +45,12 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
         return GetFx(_crushParticlePool);
       
     }
+    
+    public ParticleSystem GetObstacleCrushFx()
+    {
+        return GetFx(_obstacleShuriFXPool);
+    }
+
     public ParticleSystem GetGainFx()
     {
         return GetFx(_gainParticlePool);

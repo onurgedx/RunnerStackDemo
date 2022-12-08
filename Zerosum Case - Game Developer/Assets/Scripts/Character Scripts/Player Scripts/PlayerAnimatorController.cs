@@ -41,6 +41,11 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void AnimateGivenEvent(int animationNumber)
     {
+        _animator.ResetTrigger(AnimatorEvents.Dance);
+        _animator.ResetTrigger(AnimatorEvents.Run1);
+        _animator.ResetTrigger(AnimatorEvents.Run2);
+        _animator.ResetTrigger(AnimatorEvents.Idle);
+
         _animator.SetTrigger(animationNumber);
 
 
