@@ -31,7 +31,7 @@ public class CameraManager : MonoSingleton<CameraManager>
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
 
         CameraEvents?.Invoke();

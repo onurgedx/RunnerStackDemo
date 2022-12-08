@@ -27,7 +27,7 @@ public class RotaterToCamera : MonoBehaviour
     private void LookAtCamera()
     {
 
-        _transform.rotation = Quaternion.LookRotation(_cameraTransform.position - _transform.position);
+        _transform.rotation = Quaternion.LookRotation(_transform.position - _cameraTransform.position);
 
 
     }

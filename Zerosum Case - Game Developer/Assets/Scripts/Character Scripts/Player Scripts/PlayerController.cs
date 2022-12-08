@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         Vector3 positionOfPlayerLooks = _playerAvatarModelLooksHereTransform.position;
 
         positionOfPlayerLooks.z = _playerLookHereZRerefanceTransform.position.z;
+        
 
         positionOfPlayerLooks.x = Mathf.Clamp(positionOfPlayerLooks.x+inputDirection.x, _clampXPositionTransforms[0].position.x,_clampXPositionTransforms[1].position.x);
 

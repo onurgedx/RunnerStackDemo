@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[DefaultExecutionOrder(3)]
 public class PlayerStack : MonoBehaviour
 {
 
@@ -73,6 +73,7 @@ public class PlayerStack : MonoBehaviour
     }
     void Start()
     {
+        
         ResetStackCountZero();
         LevelManager.Instance.OnLevelLoad += ResetStackCountZero;
         _playerCollisionChecker.OnGainCollectable += IncreaseStackCount;
@@ -82,9 +83,11 @@ public class PlayerStack : MonoBehaviour
         MaxStackCount = 0;
         MaxStackCount = PlayerPrefs.GetInt(GlobalStrings.MaxStackCount, GlobalNumbers.DefaultMaxStackCount);
         CanvasManager.Instance.OnUpgrade += IncreaseMaxStackCount;
+        
         OnStackFull += SetLayerIgnoreDiamonts;
         OnStackLose += SetLayerPlayer;
         LevelManager.Instance.OnLevelLoad += SetLayerPlayer;
+
     }
 
     private bool CanStackable()
