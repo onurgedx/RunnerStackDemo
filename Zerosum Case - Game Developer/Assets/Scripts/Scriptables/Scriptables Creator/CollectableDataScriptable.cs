@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CollectableData", menuName = "ScriptablesObject/CollectableData")]
 public class CollectableDataScriptable : ScriptableObject
 {
+    public CollectablesEnum CollectableType;
     public int StackCost = 1;
     public int ValueAsGoldCoin = 50;
 }

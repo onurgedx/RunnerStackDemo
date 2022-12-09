@@ -2826,6 +2826,7 @@ GameObject:
   - component: {fileID: 1256875586}
   - component: {fileID: 1256875587}
   - component: {fileID: 1256875588}
+  - component: {fileID: 1256875589}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -3072,6 +3073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828daccfd86bc054ba2f4a5260786d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BounceAspect: 0.3
   BounceSpeed: 5
   _playerCollisionChecker: {fileID: 1256875572}
   _childestAvatarModelTransform: {fileID: 961276701}
@@ -3122,6 +3124,19 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f65b56d97f8d67e41a48ca204f9c490f, type: 2}
   _crushMaterialList:
   - {fileID: 2100000, guid: ceecae37bf738ef41b2ebd6207b471dc, type: 2}
+--- !u!114 &1256875589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256875568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec8716cb5c89e948842de6d86a9288e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCollisionChecker: {fileID: 1256875572}
 --- !u!1 &1259670852
 GameObject:
   m_ObjectHideFlags: 0

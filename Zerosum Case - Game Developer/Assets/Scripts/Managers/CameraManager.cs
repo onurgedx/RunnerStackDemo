@@ -70,7 +70,7 @@ public class CameraManager : MonoSingleton<CameraManager>
     public void ShakeCamera()
     {
 
-        _mainCamera.transform.DOShakeRotation(0.1f,1,1); 
+        _mainCamera.transform.DOShakeRotation(Durations.CameraShakeDuration,5,3); 
 
     }
     

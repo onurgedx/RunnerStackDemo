@@ -133,7 +133,7 @@ public class PlayerStack : MonoBehaviour
         gameObject.layer = 6;
     }
 
-    // Start is called before the first frame update
+   
 
 
     private void IncreaseMaxStackCount()

@@ -30,7 +30,7 @@ public class PlayerCrushMaterialChanger : MonoBehaviour
         IEnumerator ChangeMaterialIEnumerator()
         {
             _meshRenderer.materials = _crushMaterialList;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(Durations.MaterialChangeDuration);
             _meshRenderer.materials = _normalMaterialList;
 
         }

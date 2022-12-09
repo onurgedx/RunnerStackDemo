@@ -30,7 +30,7 @@ public class PlayerCollisionChecker : MonoBehaviour
 
             collectable.Collect(_player);
 
-            OnGainCollectable?.Invoke(collectable.StackValue());
+            OnGainCollectable?.Invoke(collectable.GetStackValue());
 
         }
         if(other.gameObject.TryGetComponent(out IObstacle obstacle))

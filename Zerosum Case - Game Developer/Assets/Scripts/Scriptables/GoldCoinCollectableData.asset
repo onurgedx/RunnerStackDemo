@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e7d968253881a498cb07ab566737e3, type: 3}
   m_Name: GoldCoinCollectableData
   m_EditorClassIdentifier: 
+  CollectableType: 1
   StackCost: 0
+  ValueAsGoldCoin: 50

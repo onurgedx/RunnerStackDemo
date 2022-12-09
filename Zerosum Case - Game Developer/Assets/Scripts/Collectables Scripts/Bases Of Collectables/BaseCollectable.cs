@@ -10,13 +10,15 @@ public class BaseCollectable : MonoBehaviour , ICollectable
 
     public Action<IPlayer> OnBeCollected;
 
+    
+
     public void Collect(IPlayer player)
     {
         OnBeCollected?.Invoke(player);
 
     }
 
-    public int StackValue()
+    public int GetStackValue()
     {
         return _collectableData.StackCost;
     }
@@ -24,6 +26,16 @@ public class BaseCollectable : MonoBehaviour , ICollectable
     public int GetValueAsGold()
     {
         return _collectableData.ValueAsGoldCoin;
+
     }
-  
+
+    public int GetStackCostAsGoldForFinalCalculating()
+    {
+        if (_collectableData.CollectableType == CollectablesEnum.CoinGold)
+        {
+            return 0;
+        }
+        return _collectableData.ValueAsGoldCoin;
+    }
+
 }
