@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   MovementSpeedForRun1: 5
-  MovementSpeedForRun2: 7
+  MovementSpeedForRun2: 8
   RotateSpeed: 40
   ReboundAmount: -1.4
