@@ -8,8 +8,9 @@ public class ObstacleDataScriptable : ScriptableObject
 {
 
 
-    public int StackCost = 1; 
+    public int StackCost = 1;
 
+    public float ObstacleXAxisSpeed = 4f;
 
 
 
