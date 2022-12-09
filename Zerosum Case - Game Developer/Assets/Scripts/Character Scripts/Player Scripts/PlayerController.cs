@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
         positionOfPlayerLooks.x = Mathf.Clamp(positionOfPlayerLooks.x+inputDirection.x, _clampXPositionTransforms[0].position.x,_clampXPositionTransforms[1].position.x);
 
+        positionOfPlayerLooks.x = Mathf.Lerp(positionOfPlayerLooks.x, _playerLookHereZRerefanceTransform.position.x, Time.deltaTime);
         _playerAvatarModelLooksHereTransform.position = positionOfPlayerLooks;
 
 
