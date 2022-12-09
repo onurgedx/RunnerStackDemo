@@ -12,7 +12,11 @@ public static class TransformExtension
 
        void Deactive()
         {
+            if (_transform.gameObject != null)
+            {
+
             _transform.gameObject.SetActive(false);
+            }
 
         }
     }

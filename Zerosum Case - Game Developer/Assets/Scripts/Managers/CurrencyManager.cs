@@ -21,7 +21,7 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
     public void DecreaseCurrencyAmount()
     {
         
-        CurrencyAmount = Mathf.Clamp(CurrencyAmount - UpgradeCost, 0, 1000);
+        CurrencyAmount = Mathf.Clamp(CurrencyAmount - UpgradeCost, 0, 1000000);
 
 
     }

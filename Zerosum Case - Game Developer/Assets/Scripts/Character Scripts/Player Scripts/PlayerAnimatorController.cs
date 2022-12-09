@@ -12,13 +12,17 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void Start()
     {
+        
         LevelManager.Instance.OnLevelLoad += AnimateIdle;
+        
         _playerMovement.OnMovementEnd += AnimateDance;
+        
         _playerMovement.OnRun1MovementStart += AnimateRun1;
+        
         _playerMovement.OnRun2MovementStart += AnimateRun2;
 
     }
-
+    #region Animation Runners
     private void AnimateIdle()
     {
         AnimateGivenEvent(AnimatorEvents.Idle);
@@ -38,7 +42,9 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         AnimateGivenEvent(AnimatorEvents.Dance);
     }
+    #endregion
 
+    #region Base Animation Runner
     private void AnimateGivenEvent(int animationNumber)
     {
         _animator.ResetTrigger(AnimatorEvents.Dance);
@@ -51,7 +57,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     }
 
-
+    #endregion
 
 
 

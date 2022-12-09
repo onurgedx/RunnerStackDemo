@@ -22,13 +22,17 @@ public class PlayerCameraReferanceSetter : MonoBehaviour
 
     }
 
+
+    #region Base Camera Reference Setter
     private void SetCameraReferanceGivenTransform(Transform referanceTransform)
     {
 
         CameraManager.Instance.SetCameraReferance(referanceTransform);
 
     }
+    #endregion
 
+    #region Camera Referance Setters
 
     private void SetCameraReferanceBeforeStart()
     {
@@ -49,5 +53,6 @@ public class PlayerCameraReferanceSetter : MonoBehaviour
     {
         SetCameraReferanceGivenTransform(_cameraReferanceDance);
     }
+    #endregion
 
 }

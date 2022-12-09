@@ -9,14 +9,22 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
     public class ParticlePool
     {
         public ParticleSystem ParticleSystemPrefab;
-        public List<ParticleSystem> PoolList= new List<ParticleSystem>();
+        public List<ParticleSystem> PoolList = new List<ParticleSystem>();
 
     }
 
+    #region ParticlePools
     [SerializeField] private ParticlePool _crushParticlePool;
     [SerializeField] private ParticlePool _gainParticlePool;
     [SerializeField] private ParticlePool _obstacleShuriFXPool;
+    #endregion
 
+
+
+    #region ParticleSystems
+
+
+    #region Base Particle System 
 
     private ParticleSystem GetFx(ParticlePool particlePool)
     {
@@ -40,12 +48,14 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
         return particleSystem;
 
     }
+
+    #endregion
     public ParticleSystem GetCrushFx()
     {
         return GetFx(_crushParticlePool);
-      
+
     }
-    
+
     public ParticleSystem GetObstacleCrushFx()
     {
         return GetFx(_obstacleShuriFXPool);
@@ -55,6 +65,6 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
     {
         return GetFx(_gainParticlePool);
     }
+    #endregion
 
-    
 }

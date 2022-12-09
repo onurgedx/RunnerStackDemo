@@ -24,7 +24,7 @@ public class GoldBeGainedActor : BaseBeGainedActor, IBeGained
     private void RunBeGainedEffect(IPlayer player)
     {
 
-       _transform.DOScale(0, Durations.BeGainedDuration).SetLink(gameObject);
+       _transform.DOScale(0.35f, Durations.BeGainedDuration).SetLink(gameObject);
 
 
     }
@@ -38,12 +38,12 @@ public class GoldBeGainedActor : BaseBeGainedActor, IBeGained
             float timeCounter = 0;
             Transform destinationTransform = CanvasManager.Instance.CurrencyAmountInGameTransform;
             float timeAspectForLerp = 1 / Durations.BeGainedDuration;
-
+            Vector3 firstpos = _transform.position;
             while (timeCounter < Durations.BeGainedDuration)
             {
 
                 timeCounter += Time.deltaTime;
-                _transform.position = Vector3.Lerp(_transform.position, destinationTransform.position, timeAspectForLerp * timeCounter);
+                _transform.position = Vector3.Lerp(firstpos, destinationTransform.position, timeAspectForLerp * timeCounter);//
 
                 yield return null;
 

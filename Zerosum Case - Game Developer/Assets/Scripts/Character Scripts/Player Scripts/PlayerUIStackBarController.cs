@@ -28,7 +28,8 @@ public class PlayerUIStackBarController : MonoBehaviour
 
     }
 
-  
+
+    #region StackBar Slider Updater Methods
     private void UpdateStackBarMaxValue(int maxValue)
     {
         _stackBarSlider.maxValue = maxValue;
@@ -40,6 +41,9 @@ public class PlayerUIStackBarController : MonoBehaviour
         _stackBarSlider.value = valueOfCurrentStack;
 
     }
+    #endregion
+
+    #region Activate/Deactivate Methods
     private void ActivateStackBar()
     {
 
@@ -53,5 +57,6 @@ public class PlayerUIStackBarController : MonoBehaviour
         _stackBarSlider.gameObject.SetActive(false);
 
     }
+    #endregion
 
 }

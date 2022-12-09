@@ -5,17 +5,15 @@ using UnityEngine;
 using DG.Tweening;
 public class CameraManager : MonoSingleton<CameraManager>
 {
+    public float CameraMovemenSpeed = 3f;
+    public float CameraRotateSpeed = 2f;
+    public Action CameraEvents;
 
-    
+
     private Camera _mainCamera;
-
     private Transform _cameraReferanceTransform;
 
 
-    public float CameraMovemenSpeed = 3f;
-    public float CameraRotateSpeed = 2f;
-
-    public Action CameraEvents;
 
 
 
@@ -36,44 +34,48 @@ public class CameraManager : MonoSingleton<CameraManager>
 
         CameraEvents?.Invoke();
 
-        
+
     }
 
-   public void SetCameraReferance(Transform referanceTransform)
+    #region Camera Referance Setter
+    public void SetCameraReferance(Transform referanceTransform)
     {
         _cameraReferanceTransform = referanceTransform;
     }
+    #endregion
 
-
+    #region CameraEvents Handler
     public void SetCameraEvents()
     {
-        CameraEvents = CameraMovementBeforeStart;
-        CameraEvents += CameraRotateBeforeStart;
+        CameraEvents = CameraMovementGeneral;
+        CameraEvents += CameraRotateGeneral;
 
     }
+    #endregion
 
-
-    private void CameraMovementBeforeStart()
+    #region Camera Movements
+    private void CameraMovementGeneral()
     {
         _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, _cameraReferanceTransform.position, CameraMovemenSpeed * Time.deltaTime);
 
     }
-    private void CameraRotateBeforeStart()
+    private void CameraRotateGeneral()
     {
 
         _mainCamera.transform.rotation = Quaternion.Lerp(_mainCamera.transform.rotation, _cameraReferanceTransform.rotation, CameraRotateSpeed * Time.deltaTime);
 
 
     }
+    #endregion
 
-    
+    #region CameraShake Method
     public void ShakeCamera()
     {
 
-        _mainCamera.transform.DOShakeRotation(Durations.CameraShakeDuration,5,3); 
+        _mainCamera.transform.DOShakeRotation(Durations.CameraShakeDuration, 5, 3);
 
     }
-    
+    #endregion
 
 
 }

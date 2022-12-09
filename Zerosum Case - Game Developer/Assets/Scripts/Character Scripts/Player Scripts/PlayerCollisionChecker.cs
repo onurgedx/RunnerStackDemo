@@ -9,10 +9,7 @@ public class PlayerCollisionChecker : MonoBehaviour
     public Action<int> OnCrushAObstacle;
     private IPlayer _player;
 
-    public delegate bool CollideCheker();
-    public CollideCheker CanCollect;
-
-
+   
     // Start is called before the first frame update
     void Start()
     {

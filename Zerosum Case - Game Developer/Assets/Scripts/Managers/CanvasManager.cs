@@ -18,16 +18,26 @@ public class CanvasManager : MonoSingleton<CanvasManager>
 
     [SerializeField] private GameObject _startMenu, _inGameUI, _finishMenu;
 
-
-
     [SerializeField] private List<Text> _levelNumberTextList;
     [SerializeField] private List<Text> _currencyAmountTextList;
 
     [SerializeField] private Button _upgradeButton;
     [SerializeField] private Button _playButtton;
 
+    private void Start()
+    {
 
-
+        _upgradeButton.onClick.AddListener(UpgradeButtonPressed);// i did this to show you i know that way.
+        UpdateCurrencyAmountText();
+        SetUpgradeButtonInteractable();
+        LevelManager.Instance.OnLevelStart += ActivateInGameIU;
+        LevelManager.Instance.OnLevelFinish += ActivateFinishMenu;
+        LevelManager.Instance.OnLevelLoad += ActivateStartMenu;
+        LevelManager.Instance.OnLevelNumberChange += UpdateLevelNumberText;
+        CurrencyManager.Instance.OnCurrencyAmountChange += SetUpgradeButtonInteractable;
+        CurrencyManager.Instance.OnCurrencyAmountChange += UpdateCurrencyAmountText;
+    }
+    #region Menu Activate Methods
 
     private void ActivateStartMenu()
     {
@@ -37,7 +47,7 @@ public class CanvasManager : MonoSingleton<CanvasManager>
         _finishMenu.SetActive(false);
 
     }
-   
+
     private void ActivateInGameIU()
     {
 
@@ -53,23 +63,12 @@ public class CanvasManager : MonoSingleton<CanvasManager>
         _inGameUI.SetActive(false);
         _startMenu.SetActive(false);
     }
+    #endregion
 
-    private void Start()
-    {
-        
-        _upgradeButton.onClick.AddListener(UpgradeButtonPressed);// i did this to show you i know that way.
-        UpdateCurrencyAmountText();
-        SetUpgradeButtonInteractable();
-        LevelManager.Instance.OnLevelStart += ActivateInGameIU;
-        LevelManager.Instance.OnLevelFinish += ActivateFinishMenu;
-        LevelManager.Instance.OnLevelLoad += ActivateStartMenu;
-        LevelManager.Instance.OnLevelNumberChange += UpdateLevelNumberText;
-        CurrencyManager.Instance.OnCurrencyAmountChange += SetUpgradeButtonInteractable;
-        CurrencyManager.Instance.OnCurrencyAmountChange += UpdateCurrencyAmountText;
-    }
+    #region Text Updaters
     private void UpdateLevelNumberText()
     {
-        string levelNumberText =GlobalStrings.Level + " " + LevelManager.Instance.LevelNumber.ToString();
+        string levelNumberText = GlobalStrings.Level + " " + LevelManager.Instance.LevelNumber.ToString();
         for (int i = 0; i < _levelNumberTextList.Count; i++)
         {
             _levelNumberTextList[i].text = levelNumberText;
@@ -78,10 +77,7 @@ public class CanvasManager : MonoSingleton<CanvasManager>
 
 
     }
-    private void UpgradeButtonPressed()
-    {
-        OnUpgrade?.Invoke();
-    }
+
     public void UpdateCurrencyAmountText()
     {
         string currencyAmountStr = CurrencyManager.Instance.CurrencyAmount.ToString();
@@ -91,6 +87,14 @@ public class CanvasManager : MonoSingleton<CanvasManager>
             _currencyAmountTextList[i].text = currencyAmountStr;
         }
     }
+    #endregion
+    
+    private void UpgradeButtonPressed()
+    {
+        OnUpgrade?.Invoke();
+    }
+
+
     private void SetUpgradeButtonInteractable()
     {
 

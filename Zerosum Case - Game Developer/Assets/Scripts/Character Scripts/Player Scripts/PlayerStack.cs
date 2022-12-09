@@ -78,23 +78,17 @@ public class PlayerStack : MonoBehaviour
         LevelManager.Instance.OnLevelLoad += ResetStackCountZero;
         _playerCollisionChecker.OnGainCollectable += IncreaseStackCount;
         _playerCollisionChecker.OnCrushAObstacle += DecreaseStackCount;
-        _playerCollisionChecker.CanCollect += CanStackable;
+        
 
         MaxStackCount = 0;
         MaxStackCount = PlayerPrefs.GetInt(GlobalStrings.MaxStackCount, GlobalNumbers.DefaultMaxStackCount);
         CanvasManager.Instance.OnUpgrade += IncreaseMaxStackCount;
         
-        OnStackFull += SetLayerIgnoreDiamonts;
-        OnStackLose += SetLayerPlayer;
-        LevelManager.Instance.OnLevelLoad += SetLayerPlayer;
+      
 
     }
 
-    private bool CanStackable()
-    {
-        return _canStackIncrease;
-
-    }
+  
 
 
     private void ResetStackCountZero()
@@ -123,17 +117,11 @@ public class PlayerStack : MonoBehaviour
         StackCount = 0;
 
     }
-    private void SetLayerIgnoreDiamonts()
-    {
-        gameObject.layer = 8;
-        
-    }
-    private void SetLayerPlayer()
-    {
-        gameObject.layer = 6;
-    }
+    
+    
+  
 
-   
+    
 
 
     private void IncreaseMaxStackCount()

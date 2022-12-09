@@ -6,11 +6,9 @@ using UnityEngine;
 public class BaseCollectable : MonoBehaviour , ICollectable
 {
 
-    [SerializeField] private CollectableDataScriptable _collectableData;
+    [SerializeField] protected CollectableDataScriptable _collectableData;
 
     public Action<IPlayer> OnBeCollected;
-
-    
 
     public void Collect(IPlayer player)
     {
@@ -29,12 +27,9 @@ public class BaseCollectable : MonoBehaviour , ICollectable
 
     }
 
-    public int GetStackCostAsGoldForFinalCalculating()
+    public virtual int GetStackCostAsGoldForFinalCalculating()
     {
-        if (_collectableData.CollectableType == CollectablesEnum.CoinGold)
-        {
-            return 0;
-        }
+       
         return _collectableData.ValueAsGoldCoin;
     }
 
