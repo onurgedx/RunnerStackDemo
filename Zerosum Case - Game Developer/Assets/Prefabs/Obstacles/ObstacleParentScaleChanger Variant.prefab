@@ -74,5 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf44b1eb7c907f40a84fc3899247005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScaleChangeSpeed: 4
-  MaxAdditionalAspectOfScale: 0.5
+  ScaleChangeSpeed: 2
+  MaxAdditionalAspectOfScale: 1

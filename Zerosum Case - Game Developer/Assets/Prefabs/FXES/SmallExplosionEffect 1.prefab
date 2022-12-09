@@ -266,8 +266,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.075
-      minScalar: 0
+      scalar: 0.2
+      minScalar: 0.09
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -587,7 +587,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 2
+    type: 0
     angle: 32.22
     length: 0.12
     boxThickness: {x: 0, y: 0, z: 0}
@@ -2610,7 +2610,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0

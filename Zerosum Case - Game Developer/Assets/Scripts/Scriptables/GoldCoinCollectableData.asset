@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectableType: 1
   StackCost: 0
-  ValueAsGoldCoin: 50
+  ValueAsGoldCoin: 5
