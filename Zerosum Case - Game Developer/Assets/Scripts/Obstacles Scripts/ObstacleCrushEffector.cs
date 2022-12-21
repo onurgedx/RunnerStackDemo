@@ -14,7 +14,7 @@ public class ObstacleCrushEffector : MonoBehaviour
 
     private void RunCrushEffect()
     {
-        ParticleSystem particleSystem = ObjectPoolManager.Instance.GetObstacleCrushFx();
+        ParticleSystem particleSystem = ObjectPoolManager.Instance.ObstacleShurikenCrushFxPool.GetPoolMember();
         particleSystem.transform.position = transform.position;
         particleSystem.Play();
         particleSystem.transform.DeactiveTransformAfterxTimeSecond(3);

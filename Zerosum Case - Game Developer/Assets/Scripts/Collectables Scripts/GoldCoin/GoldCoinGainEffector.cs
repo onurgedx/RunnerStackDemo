@@ -19,7 +19,7 @@ public class GoldCoinGainEffector : MonoBehaviour
     private void RunBeGainedCoinEffect(IPlayer player)
     {
 
-        ParticleSystem particle = ObjectPoolManager.Instance.GetGainFx();
+        ParticleSystem particle = ObjectPoolManager.Instance.GainParticlePool.GetPoolMember();
         particle.transform.position = transform.position;
         particle.Play();
         particle.transform.DeactiveTransformAfterxTimeSecond(1);

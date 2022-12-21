@@ -5,66 +5,50 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
 {
+    
+
+
     [Serializable]
-    public class ParticlePool
+    public class Pool<T> where T : Component
     {
-        public ParticleSystem ParticleSystemPrefab;
-        public List<ParticleSystem> PoolList = new List<ParticleSystem>();
+        public T PoolPrefab;
 
-    }
+        public List<T> PoolList = new List<T>();
 
-    #region ParticlePools
-    [SerializeField] private ParticlePool _crushParticlePool;
-    [SerializeField] private ParticlePool _gainParticlePool;
-    [SerializeField] private ParticlePool _obstacleShuriFXPool;
-    #endregion
-
-
-
-    #region ParticleSystems
-
-
-    #region Base Particle System 
-
-    private ParticleSystem GetFx(ParticlePool particlePool)
-    {
-
-        for (int i = 0; i < particlePool.PoolList.Count; i++)
+        public T GetPoolMember()
         {
-            if (!particlePool.PoolList[i].gameObject.activeInHierarchy)
+
+            for (int i = 0; i < PoolList.Count; i++)
             {
-                particlePool.PoolList[i].gameObject.SetActive(true);
-                return particlePool.PoolList[i];
+                if (!PoolList[i].gameObject.activeInHierarchy)
+                {
+
+                    PoolList[i].gameObject.SetActive(true);
+                    return PoolList[i];
+
+                }
+
             }
+            GameObject newPoolMembersGameObject = Instantiate(PoolPrefab.gameObject);
+            T newPoolMember = newPoolMembersGameObject.GetComponent<T>();
+            PoolList.Add(newPoolMember);
+            newPoolMembersGameObject.SetActive(true);
+            return newPoolMember;
 
         }
 
-        GameObject particleGo = Instantiate(particlePool.ParticleSystemPrefab.gameObject);
-
-        ParticleSystem particleSystem = particleGo.GetComponent<ParticleSystem>();
-
-        particlePool.PoolList.Add(particleSystem);
-        particleGo.SetActive(true);
-        return particleSystem;
-
     }
 
-    #endregion
-    public ParticleSystem GetCrushFx()
-    {
-        return GetFx(_crushParticlePool);
+    public Pool<ParticleSystem> CrushParticlePool;
+    public Pool<ParticleSystem> GainParticlePool;
+    public Pool<ParticleSystem> ObstacleShurikenCrushFxPool;
+    
 
-    }
 
-    public ParticleSystem GetObstacleCrushFx()
-    {
-        return GetFx(_obstacleShuriFXPool);
-    }
 
-    public ParticleSystem GetGainFx()
-    {
-        return GetFx(_gainParticlePool);
-    }
-    #endregion
+
+
+
+
 
 }

@@ -1490,14 +1490,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc6865e730b08e4fb126833783f26ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _crushParticlePool:
-    ParticleSystemPrefab: {fileID: 5730465767898580870, guid: 2d537e37647920e4e8a5de1c3de40e28, type: 3}
+  CrushParticlePool:
+    PoolPrefab: {fileID: 5730465767898580870, guid: 2d537e37647920e4e8a5de1c3de40e28, type: 3}
     PoolList: []
-  _gainParticlePool:
-    ParticleSystemPrefab: {fileID: 7482921914844312819, guid: 9c05a7a1297e21d45942646f839ef4e1, type: 3}
+  GainParticlePool:
+    PoolPrefab: {fileID: 7482921914844312819, guid: 9c05a7a1297e21d45942646f839ef4e1, type: 3}
     PoolList: []
-  _obstacleShuriFXPool:
-    ParticleSystemPrefab: {fileID: 198000012942003240, guid: 25290d981a3225946ab7f8c3089846ce, type: 3}
+  ObstacleShurikenCrushFxPool:
+    PoolPrefab: {fileID: 198000012942003240, guid: 25290d981a3225946ab7f8c3089846ce, type: 3}
     PoolList: []
 --- !u!1 &1140306758
 GameObject:

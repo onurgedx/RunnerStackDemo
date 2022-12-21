@@ -16,7 +16,7 @@ public class PlayerCrushObstacleLoseDiamondsEffector : MonoBehaviour
 
     private void RunCrushFxEffect(int a)
     {
-        ParticleSystem particleSystem = ObjectPoolManager.Instance.GetCrushFx();
+        ParticleSystem particleSystem = ObjectPoolManager.Instance.CrushParticlePool.GetPoolMember();
         particleSystem.transform.position = transform.position + Vector3.up;
 
         particleSystem.Play();
